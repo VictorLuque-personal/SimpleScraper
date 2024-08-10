@@ -66,9 +66,7 @@ class StorageManager:
       INSERT INTO Queries (ID, TimeStamp, FilterCriteria, NumEntries) VALUES (?, ?, ?, ?)
     ''', (queryID, timestamp, criteria, len(data)))
     
-    print(len(data))
     entries = [(self.guid_generator(), rank, values[0], values[1], values[2], queryID) for rank, values in data.items()]
-    print(entries)
     
     self.cursor.executemany('''
       INSERT INTO QueryEntries (ID, Rank, Title, Score, Comments, QueryID) VALUES (?, ?, ?, ?, ?, ?)

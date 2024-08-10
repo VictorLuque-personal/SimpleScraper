@@ -1,7 +1,7 @@
 import re
 from enum import Enum
 
-class Filterer():
+class Filterer:
   
   class FilterCriteria(Enum):
     FIRST = 1

@@ -14,6 +14,10 @@ class ScraperTechnicalTest:
     # I will be using BeautifulSoup that I googled it is currently one of the most 
     # used scrapers and it is simple
     self.scraper = BeautifulSoup(self.response.content, 'lxml')
+    
+  def __eq__(self, other):
+    """ for testing """
+    return self.url == other.url
   
   def get_data(self):
     """ Gets the data needed for the exercise in a dictionary with the ranks as
@@ -30,6 +34,9 @@ class ScraperTechnicalTest:
         if not c.isdigit():
           break
         idx += 1
+      
+      if idx == 0:
+        raise ValueError("The string does not start with a number")
       
       return int(s[:idx])
     
