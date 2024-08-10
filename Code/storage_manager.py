@@ -79,7 +79,7 @@ class StorageManager:
     
     self.cursor.execute('''
       SELECT * FROM Queries
-      ORDER BY TimeStamp
+      ORDER BY TimeStamp DESC
     ''')
     
     queryID_bytes, timestamp, criteria, num_entries = self.cursor.fetchone()
