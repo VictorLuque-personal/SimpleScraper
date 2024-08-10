@@ -15,5 +15,6 @@ if __name__ == "__main__":
   db_path = path.join(path.dirname(path.abspath(__file__)), 'Storage', 'storage.db')
   
   storage = storage_manager.StorageManager(db_path)
-  storage.save(filtered_data, filtering.Filterer.FilterCriteria.SECOND.value)
+  storage.save_data(filtered_data, filtering.Filterer.FilterCriteria.SECOND.value)
+  print(storage.get_last_query())
   storage.close_connection()

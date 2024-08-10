@@ -55,7 +55,7 @@ class StorageManager:
   def guid_generator(self):
     return uuid.uuid4().bytes
   
-  def save(self, data: dict, criteria: int):
+  def save_data(self, data: dict, criteria: int):
     """ Saves a query, filtered or not with its entries and the timestamp """
     
     # The query info
@@ -73,6 +73,26 @@ class StorageManager:
     ''', entries)
     
     self.connection.commit()
+    
+  def get_last_query(self):
+    """ Gets the last query in the database """
+    
+    self.cursor.execute('''
+      SELECT * FROM Queries
+      ORDER BY TimeStamp
+    ''')
+    
+    queryID_bytes, timestamp, criteria, num_entries = self.cursor.fetchone()
+    
+    self.cursor.execute('''
+      SELECT * FROM QueryEntries
+      WHERE QueryID = ?
+    ''', (queryID_bytes,))
+    
+    entries = self.cursor.fetchall()
+    
+    return { rank: (title, score, comments) for (entryID, rank, title, score, comments, queryID) in entries }
+    
   
   def close_connection(self):
     self.connection.close()
