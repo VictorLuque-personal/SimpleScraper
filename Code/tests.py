@@ -11,3 +11,7 @@ def has_more_than_five_words(text):
     return len(words) > 5
   
 print(re.sub(r'[^\w\s]', '', "This is -- a self-explained example").split())
+
+a = 1
+b = None
+print((1, "aaa", a if a == 0 else "joder", "hola" if b == None else b))

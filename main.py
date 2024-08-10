@@ -1,4 +1,5 @@
 from Code import scraper, filtering, storage_manager
+import os.path as path
 
 if __name__ == "__main__":
   
@@ -9,6 +10,10 @@ if __name__ == "__main__":
   # Get the data
   data = scraper_obj.get_data()
   filtered_data = filterer.filtering_data(data, filtering.Filterer.FilterCriteria.FIRST)
-  print(len(filtered_data))
   filtered_data = filterer.filtering_data(data, filtering.Filterer.FilterCriteria.SECOND)
-  print(len(filtered_data))
+  
+  db_path = path.join(path.dirname(path.abspath(__file__)), 'Storage', 'storage.db')
+  
+  storage = storage_manager.StorageManager(db_path)
+  storage.save(filtered_data, filtering.Filterer.FilterCriteria.SECOND.value)
+  storage.close_connection()

@@ -4,7 +4,8 @@ from bs4 import BeautifulSoup
 # TODO: create a class with the attributes, the init for the url and all of 
 # that and a method to get the 30 list of tuples with the info
 
-class ScraperTechnicalTest():
+class ScraperTechnicalTest:
+  
   def __init__(self):
     # URL to get the content
     self.url = "https://news.ycombinator.com/"
@@ -66,7 +67,7 @@ class ScraperTechnicalTest():
           # course) and I want the second one
           comments = get_prefix_number(row.find_all('a', attrs={'href':"item?id="+row_id})[1].text)
       
-      data[rank] = (title, score, comments)
+      data[rank] = (title, score if score != None else 0, comments if comments != None else 0)
     
     return data
 

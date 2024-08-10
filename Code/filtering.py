@@ -27,13 +27,9 @@ class Filterer():
       return len(clean_str) > 5
   
     def sort_criteria_first(elem):
-      if elem[1][2] == None: # For the non commented yet
-        return 0
       return elem[1][2] # the number of comments
     
     def sort_criteria_second(elem):
-      if elem[1][1] == None: # For the non scored yet
-        return 0
       return elem[1][1] # the score
     
     filtered_data = []

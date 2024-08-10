@@ -1,3 +1,3 @@
-#from .storage_manager import init_database
+from .storage_manager import create_db
 
-#init_database()
+create_db()
